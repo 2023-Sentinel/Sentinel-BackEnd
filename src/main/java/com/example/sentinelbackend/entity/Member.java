@@ -1,5 +1,4 @@
 package com.example.sentinelbackend.entity;
-
 import jakarta.persistence.*;
 import lombok.Getter;
 
