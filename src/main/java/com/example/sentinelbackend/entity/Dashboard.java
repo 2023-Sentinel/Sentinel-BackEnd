@@ -2,12 +2,7 @@ package com.example.sentinelbackend.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.Type;
-
 import java.time.LocalDateTime;
-import java.util.Map;
-
 @Entity
 @Getter
 @Table(name = "dashboards")
