@@ -22,12 +22,6 @@ public class BoardController {
     @Autowired  //의존성 주입
     BoardService boardService;
 
-    /*@GetMapping("/boards")  //게시물 목록 조회
-    //@PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC)
-    public ResponseEntity<Iterable<Board>> list(@RequestParam(value="idx") int idx) {
-        //return new ResponseEntity<>(boardService.list(), HttpStatus.OK);
-        return new ResponseEntity<>(boardService.listById(idx), HttpStatus.OK);
-    }*/
     @GetMapping("/api/boards/list")
     public List<BoardCont> boardList(){
         return boardService.getBoardList();

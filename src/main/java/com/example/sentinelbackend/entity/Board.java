@@ -22,12 +22,16 @@ public class Board {
     @Column(length = 50, nullable = true)   //길이가 50이고, null 허용 안함
     private String title;   //제목 column 연결
 
-    @Column(nullable = true)   //null 허용안함
+    @Column//null 허용안함
     private Date date; //날짜 column 연결
 
     @Column(columnDefinition = "TEXT") //null 허용 안함
     private String content;    //내용 column 연결
 
+    @PrePersist
+    public void beforeCreate(){
+        date = new Date();
+    }
     @Builder
     public Board(String title, Date date, String content){
         this.title = title;
