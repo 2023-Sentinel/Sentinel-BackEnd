@@ -17,11 +17,6 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //자동증가 값이다
     private Integer id; //column도 연결
 
-    @ManyToOne(fetch = FetchType.LAZY)  //현재클래스:목표클래스=N:1 매핑
-    @JsonIgnore
-    @JoinColumn(name="dash_id", referencedColumnName="id") //외래키 매핑
-    private DashBoard dashBoard;
-
     @Column(length = 50, nullable = false)   //길이가 50이고, null 허용 안함
     private String title;   //column도 연결
 
@@ -38,14 +33,6 @@ public class Board {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public DashBoard getDashBoard() {
-        return dashBoard;
-    }
-
-    public void setDashBoard(DashBoard dashBoard) {
-        this.dashBoard = dashBoard;
     }
 
     public String getTitle() {
