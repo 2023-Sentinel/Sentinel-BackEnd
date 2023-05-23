@@ -2,6 +2,8 @@ package com.example.sentinelbackend.controller;
 
 import com.example.sentinelbackend.entity.Board;
 
+import com.example.sentinelbackend.entity.BoardCont;
+import com.example.sentinelbackend.entity.Dashboard;
 import com.example.sentinelbackend.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +14,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class BoardController {
@@ -24,10 +28,9 @@ public class BoardController {
         //return new ResponseEntity<>(boardService.list(), HttpStatus.OK);
         return new ResponseEntity<>(boardService.listById(idx), HttpStatus.OK);
     }*/
-    @GetMapping("/api/boards")  //시나리오 인덱스에 해당하는 게시물 목록 조회
-    public ResponseEntity<Page<Board>> list(@RequestParam(value="idx") int idx, @RequestParam(value="p") int page) {    //시나리오 id, 페이지 번호(페이지는 0부터)
-        Pageable pageable = PageRequest.of(page, 5, Sort.Direction.DESC, "id"); //넘겨받은 페이지 번호, 게시글 5개씩 보이게, 내림차순 정렬, 게시판 id기준으로
-        return new ResponseEntity<>(boardService.listById(idx, pageable), HttpStatus.OK);   //서버 측 성공 상태 응답
+    @GetMapping("/api/boards/list")
+    public List<BoardCont> boardList(){
+        return boardService.getBoardList();
     }
 
     @GetMapping("/api/boards/{id}") //선택한 게시물 보기
