@@ -1,11 +1,13 @@
 package com.example.sentinelbackend.service;
 
-import com.example.sentinelbackend.entity.Board;
-import com.example.sentinelbackend.entity.BoardRepository;
+import com.example.sentinelbackend.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 //게시판을 처리하는 데 사용
@@ -40,7 +42,23 @@ public class BoardService {
         //existingBoard.setWriter(board.getWriter());
         return boardRepository.save(existingBoard); //전달받은 board 객체 내용으로 기존 게시물(제목하고 내용) 업데이트 후 저장해서 반환
     }
+    public List<BoardCont> getBoardList() {
+        List<Board> boardEntities = boardRepository.findAll();
+        List<BoardCont> dtoss = new ArrayList<>();
 
+        for (Board entity : boardEntities) {
+            BoardCont dto = BoardCont.builder()
+                    .id(entity.getId())
+                    .title(entity.getTitle())
+                    .content(entity.getContent())
+                    .date(entity.getDate())
+                    .build();
+
+            dtoss.add(dto);
+        }
+
+        return dtoss;
+    }
     /*
     public void delete(Long id) {
         boardRepository.deleteById(id);

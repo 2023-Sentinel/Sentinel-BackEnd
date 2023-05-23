@@ -18,6 +18,7 @@ public class Board {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
+
     @Column(length = 50, nullable = true)   //길이가 50이고, null 허용 안함
     private String title;   //제목 column 연결
 
